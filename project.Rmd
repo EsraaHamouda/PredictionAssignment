@@ -1,0 +1,68 @@
+---
+title: "project"
+author: "Esraa"
+date: "7/21/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(knitr)
+library(caret)
+library(ggplot2) 
+library(e1071)
+set.seed(301)
+
+```
+
+##Read data from files
+
+ 
+```{r cars}
+
+
+testing<-read.csv(file="D:/DataSienceCoursera/Course 9/project01/pml-testing.csv",na.strings = c("NA",   ""))
+training<-read.csv(file="D:/DataSienceCoursera/Course 9/project01/pml-training.csv",na.strings = c("NA",   ""))
+
+```
+
+## Data cleaning
+ 
+```{r pressure, echo=TRUE}
+
+training[is.na(training)] <- 0
+
+testing[is.na(testing )] <- 0
+```
+
+## Data partining to training and testing
+
+```{r pressure1, echo=TRUE}
+inTrain  <- createDataPartition(training$classe, p=0.01, list=FALSE)
+TrainSet <- training[inTrain, ]
+TestSet  <- training[-inTrain, ]
+
+
+```
+
+
+## Data Training
+
+```{r pressure2, echo=TRUE}
+model1 <- train(classe ~., data=TrainSet , "glm")
+
+```
+
+
+
+
+## Data Predicting
+
+```{r pressure3, echo=TRUE}
+
+prediction1 <- predict(model1, TestSet)
+
+
+```
+ 
