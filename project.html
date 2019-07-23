@@ -405,7 +405,7 @@ TestSet  &lt;- training[-inTrain, ]</code></pre>
 <pre class="r"><code>model1 &lt;- train(classe ~., data=TrainSet )</code></pre>
 </div>
 <div id="data-predicting" class="section level2">
-<h2>Data Predicting</h2>
+<h2>Data Predicting and out of sample error</h2>
 <pre class="r"><code>prediction1 &lt;- predict(model1, TestSet)</code></pre>
 </div>
 

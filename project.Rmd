@@ -56,7 +56,7 @@ model1 <- train(classe ~., data=TrainSet , "glm")
 ```
 
 
-## Data Predicting
+## Data Predicting and out of sample error
 
 ```{r pressure3, echo=TRUE}
 
