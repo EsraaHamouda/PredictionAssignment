@@ -18,7 +18,7 @@ set.seed(301)
 
 ##Read data from files
 
- 
+ Remove the empty and null value 
 ```{r cars}
 
 
@@ -29,6 +29,7 @@ training<-read.csv(file="D:/DataSienceCoursera/Course 9/project01/pml-training.c
 
 ## Data cleaning
  
+ replacing the nulls with 0
 ```{r pressure, echo=TRUE}
 
 training[is.na(training)] <- 0
@@ -37,7 +38,7 @@ testing[is.na(testing )] <- 0
 ```
 
 ## Data partining to training and testing
-
+divide the data to train it and do cross validation process
 ```{r pressure1, echo=TRUE}
 inTrain  <- createDataPartition(training$classe, p=0.01, list=FALSE)
 TrainSet <- training[inTrain, ]
@@ -55,14 +56,13 @@ model1 <- train(classe ~., data=TrainSet , "glm")
 ```
 
 
-
-
 ## Data Predicting
 
 ```{r pressure3, echo=TRUE}
 
 prediction1 <- predict(model1, TestSet)
 
+postResample(prediction1, training)
 
 ```
  
