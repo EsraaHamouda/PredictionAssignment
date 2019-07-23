@@ -382,16 +382,20 @@ $(document).ready(function () {
 
 
 <p>##Read data from files</p>
+<p> Remove the empty and null value </p>
 <pre class="r"><code>testing&lt;-read.csv(file=&quot;D:/DataSienceCoursera/Course 9/project01/pml-testing.csv&quot;,na.strings = c(&quot;NA&quot;,   &quot;&quot;))
 training&lt;-read.csv(file=&quot;D:/DataSienceCoursera/Course 9/project01/pml-training.csv&quot;,na.strings = c(&quot;NA&quot;,  &quot;&quot;))</code></pre>
 <div id="data-cleaning" class="section level2">
 <h2>Data cleaning</h2>
+<p> replacing the nulls with 0</p>
 <pre class="r"><code>training[is.na(training)] &lt;- 0
 
 testing[is.na(testing )] &lt;- 0</code></pre>
 </div>
 <div id="data-partining-to-training-and-testing" class="section level2">
 <h2>Data partining to training and testing</h2>
+<p>divide the data to train it and do cross validation process
+</p>
 <pre class="r"><code>inTrain  &lt;- createDataPartition(training$classe, p=0.7, list=FALSE)
 TrainSet &lt;- training[inTrain, ]
 TestSet  &lt;- training[-inTrain, ]</code></pre>
